@@ -49,14 +49,13 @@ class OTP:
 
     def verify_otp(self,code:str,number:str):
         url = "https://sms.arkesel.com/api/otp/verify"
-
         data = {
             "api-key":self.api_key,
             "code":code,
             "number":number
         }
-
         response = requests.post(url=url,data=data,headers=self.headers)
+        return response.json()
     
 
     
