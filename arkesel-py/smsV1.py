@@ -65,4 +65,4 @@ class ARKESELSMS_V1:
 
         response = requests.get(url=url,params=params)
 
-        return response.json
+        return response.json()
