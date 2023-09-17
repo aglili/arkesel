@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: arkesel
+Version: 0.1.0
+Summary: Un-Official API-Wrapper for the Arkesel API
+Home-page: https://github.com/aglili/arkesel-py
+Author: Aglili Selorm Cecil
+Author-email: cecilselorm34@gmail.com
+License: MIT
+License-File: LICENSE

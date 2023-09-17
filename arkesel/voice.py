@@ -2,7 +2,7 @@ import requests
 
 
 
-class ARKESEL_VOICE:
+class VOICE:
     def __init__(self,api_key) -> None:
         self.headers = {"api-key":api_key}
 
