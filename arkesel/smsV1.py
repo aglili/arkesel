@@ -51,21 +51,14 @@ class SMSV1:
             recipient (str): The recipient's phone number.
             sender (str): The sender's phone number or name.
             message (str): The message content.
-            time (str): The time to schedule the SMS (format: "YYYY-MM-DD HH:MM:SS").
+            time (str): The time to schedule the SMS (format: "YYYY-MM-DD HH:MM:SS AM/PM").
 
         Returns:
             dict: The API response in JSON format.
         """
-        url = f"https://sms.arkesel.com/sms/api?schedule={time}"
-        params = {
-            "action": "send-sms",
-            "api_key": self.api_key,
-            "to": recipient,
-            "from": sender,
-            "sms": message,
-            "schedule": time
-        }
-        response = requests.get(url=url, params=params)
+        url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={self.api_key}&from={sender}&sms={message}&schedule={time}"
+
+        response = requests.get(url=url)
         return response.json()
 
     def check_balance(self) -> dict:
