@@ -130,7 +130,7 @@ We welcome contributions to improve the project! This guide will help you get st
     git push origin your-branch-name
     ```
 
-6. Open a pull request (PR) to the main repository's main branch. Provide a clear and descriptive title for your PR.
+6. Open a pull request (PR) to the main repository's `main` branch. Provide a clear and descriptive title for your PR.
 
 
 
