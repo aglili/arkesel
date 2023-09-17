@@ -25,7 +25,7 @@ pip install arksel
 ### Initialization
 
 ```
-from arkesel import SMSV1
+from arkesel.smsv1 import SMSV1
 
 sms = SMSV1(api_key="ARKESEL-API-KEY")
 ```
@@ -38,7 +38,7 @@ look in documentation for full examples
 ##### Example 1-Sending SMS with the V2 api
 
 ```python
-from arkesel import SMSV2
+from arkesel.smsV2 import SMSV2
 
 sms = SMSV2(api_key="ARKESEL-API-KEY")
 
@@ -74,7 +74,7 @@ print(response) ## json is returned
 ##### Example 2-OTP Request
 
 ```python
-from arksel import OTP
+from arksel.otp import OTP
 
 otp = OTP(api_key="ARKESEL-API-KEY")
 
