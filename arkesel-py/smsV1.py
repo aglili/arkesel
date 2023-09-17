@@ -2,7 +2,7 @@ import requests
 
 
 
-class ARKESELSMS_V1:
+class SMSV1:
     def __init__(self,api_key) -> None:
         self.api_key = api_key
 

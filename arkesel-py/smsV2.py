@@ -1,6 +1,6 @@
 import requests
 
-class ARKESELSMS_V1:
+class SMSV2:
     def __init__(self,api_key:str) -> None:
         self.headers = {"api-key":api_key}
 
