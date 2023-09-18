@@ -74,7 +74,7 @@ print(response) ## json is returned
 ##### Example 2-OTP Request
 
 ```python
-from arksel.otp import OTP
+from arkesel.otp import OTP
 
 otp = OTP(api_key="ARKESEL-API-KEY")
 
@@ -108,7 +108,7 @@ We welcome contributions to improve the project! This guide will help you get st
 
 2. Clone the forked repository to your local machine:
    ```bash
-   git clone https://github.com/your_username/your_repository.git
+   git clone https://github.com/aglili/arkesel-py.git
     ```
 
 3. Create a new branch for your feature or bugfix
