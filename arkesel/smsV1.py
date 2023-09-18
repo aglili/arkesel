@@ -1,6 +1,6 @@
 import requests
 from typing import Optional
-from errors import MissingAPIKey
+from .errors import MissingAPIKey
 
 class SMSV1:
     """
@@ -34,7 +34,6 @@ class SMSV1:
         """
         url = "https://sms.arkesel.com/sms/api?action=send-sms"
         params = {
-            "action": "send-sms",
             "api_key": self.api_key,
             "to": recipient,
             "from": sender,
@@ -70,7 +69,6 @@ class SMSV1:
         """
         url = "https://sms.arkesel.com/sms/api?action=check-balance"
         params = {
-            "action": "check-balance",
             "api_key": self.api_key,
             "response": "json"
         }
