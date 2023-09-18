@@ -16,7 +16,7 @@ A Python wrapper for  [https://arkesel.com] - an unofficial implementation.
 you can install the package using Pip
 
 ```bash
-pip install arksel
+pip install arkesel
 ```
 
 
@@ -24,7 +24,7 @@ pip install arksel
 
 ### Initialization
 
-```
+```python
 from arkesel.smsv1 import SMSV1
 
 sms = SMSV1(api_key="ARKESEL-API-KEY")
