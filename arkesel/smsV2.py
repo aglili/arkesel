@@ -1,5 +1,5 @@
 import requests
-from errors import MissingAPIKey
+from .errors import MissingAPIKey
 
 class SMSV2:
 
