@@ -1,8 +1,6 @@
 import requests
-
-
-import requests
 from typing import Optional
+from errors import MissingAPIKey
 
 class SMSV1:
     """
@@ -18,6 +16,8 @@ class SMSV1:
         Args:
             api_key (str): The API key for authentication.
         """
+        if not api_key:
+            raise MissingAPIKey("Your API Key is missing")
         self.api_key = api_key
 
     def send_sms(self, sender: str, message: str, recipient: str) -> dict:

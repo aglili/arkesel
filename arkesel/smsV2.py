@@ -1,4 +1,5 @@
 import requests
+from errors import MissingAPIKey
 
 class SMSV2:
 
@@ -18,6 +19,8 @@ class SMSV2:
         Args:
             api_key (str): The API key for authentication.
         """
+        if not api_key:
+            raise MissingAPIKey("Your API Key is missing")
         self.headers = {"api-key":api_key}
 
 
