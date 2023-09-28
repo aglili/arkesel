@@ -2,3 +2,7 @@
 pydoc-markdown.yaml
 dist
 arkesel.egg-info
+.pytest_cache
+/__pycache__/
+pydoc-markdown.yaml
+
