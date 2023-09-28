@@ -42,7 +42,11 @@ class OTP:
             "type": "numeric"
         }
         response = requests.post(url=url, headers=self.headers, data=data)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+
+        return None
+
 
     def voice_otp(self, expiry_minutes: int, recipient: str, sender_id: str) -> dict:
         """
@@ -67,7 +71,10 @@ class OTP:
             "type": "numeric"
         }
         response = requests.post(url=url, headers=self.headers, data=data)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+
+        return None
 
     def verify_otp(self, code: str, number: str) -> dict:
         """
@@ -87,4 +94,7 @@ class OTP:
             "number": number
         }
         response = requests.post(url=url, data=data, headers=self.headers)
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+        
         return response.json()
