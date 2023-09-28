@@ -34,8 +34,8 @@ class SMSV2:
             message (str): The message content.
             recipients (List[str]): List of recipient phone numbers.
 
-        Returns:
-            dict: The API response in JSON format.
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = "https://sms.arkesel.com/api/v2/sms/send"
         data = {
@@ -62,9 +62,9 @@ class SMSV2:
             message (str): The message content.
             schedule_date (str): The date and time to schedule the SMS (format: "YYYY-MM-DD HH:MM:SS").
 
-        Returns:
-            dict: The API response in JSON format.
-    """
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
+        """
         url = "https://sms.arkesel.com/api/v2/sms/send"
 
 
@@ -88,8 +88,8 @@ class SMSV2:
         """
         Retrieves the account balance and other related details.
 
-        Returns:
-            dict: The API response in JSON format containing balance details.
+        Raises:
+           requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = "https://sms.arkesel.com/api/v2/clients/balance-details"
         response = requests.get(url=url,headers=self.headers)
@@ -105,8 +105,8 @@ class SMSV2:
         Args:
             sms_id (str): The ID of the SMS.
 
-        Returns:
-            dict: The API response in JSON format containing SMS details.
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = f"https://sms.arkesel.com/api/v2/sms{sms_id}"
         response = requests.get(url=url,headers=self.headers)
@@ -114,6 +114,34 @@ class SMSV2:
             raise requests.exceptions.RequestException(f"Failed : {response.text}")
 
         return None
-
     
+
+    def group_message(self,send_id:str,message:str,group_name:str):
+        """
+        Sends a message to a created group.
+
+        Args:
+            send_id (str): Id of the sender.
+            message (str): Message to be sent to that particular group
+            group_name (str): The Name of the group to which the message is being sent
+
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
+        """
+
+        url = "https://sms.arkesel.com/api/v2/sms/send/contact-group"
+
+        data = {
+            "sender": send_id,
+            "group_name": group_name,
+            "message": message
+        }
+
+        response = requests.post(url=url,data=data,headers=self.headers)
+
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed : {response.text}")
+
+        return None
+
 

@@ -19,7 +19,7 @@ class OTP:
         self.api_key = api_key
         self.headers = {"api-key": api_key}
 
-    def sms_otp(self, expiry_minutes: int, recipient: str, sender_id: str) -> dict:
+    def sms_otp(self, expiry_minutes: int, recipient: str, sender_id: str):
         """
         Generates an OTP and sends it via SMS.
 
@@ -28,8 +28,8 @@ class OTP:
             recipient (str): The recipient's phone number.
             sender_id (str): The sender ID to display in the SMS.
 
-        Returns:
-            dict: The API response in JSON format.
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = "https://sms.arkesel.com/api/otp/generate"
         data = {
@@ -48,7 +48,7 @@ class OTP:
         return None
 
 
-    def voice_otp(self, expiry_minutes: int, recipient: str, sender_id: str) -> dict:
+    def voice_otp(self, expiry_minutes: int, recipient: str, sender_id: str):
         """
         Generates an OTP and sends it via voice call.
 
@@ -57,8 +57,8 @@ class OTP:
             recipient (str): The recipient's phone number.
             sender_id (str): The sender ID for the voice call.
 
-        Returns:
-            dict: The API response in JSON format.
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = "https://sms.arkesel.com/api/otp/generate"
         data = {
@@ -76,7 +76,7 @@ class OTP:
 
         return None
 
-    def verify_otp(self, code: str, number: str) -> dict:
+    def verify_otp(self, code: str, number: str):
         """
         Verifies an OTP with the provided code and phone number.
 
@@ -84,8 +84,8 @@ class OTP:
             code (str): The OTP code to verify.
             number (str): The phone number associated with the OTP.
 
-        Returns:
-            dict: The API response in JSON format.
+        Raises:
+            requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = "https://sms.arkesel.com/api/otp/verify"
         data = {
