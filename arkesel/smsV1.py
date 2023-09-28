@@ -40,7 +40,11 @@ class SMSV1:
             "sms": message
         }
         response = requests.get(url=url, params=params)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+
+        return None
+
 
     def schedule_sms(self, recipient: str, sender: str, message: str, time: str) -> dict:
         """
@@ -58,7 +62,10 @@ class SMSV1:
         url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={self.api_key}&from={sender}&sms={message}&schedule={time}"
 
         response = requests.get(url=url)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+
+        return None
 
     def check_balance(self) -> dict:
         """
@@ -73,7 +80,11 @@ class SMSV1:
             "response": "json"
         }
         response = requests.get(url=url, params=params)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+
+        return None
+
 
     def save_contact(self, phonebook_name: str, phone_number: str, first_name: Optional[str] = None,
                      last_name: Optional[str] = None, email: Optional[str] = None, company: Optional[str] = None) -> dict:
@@ -109,4 +120,8 @@ class SMSV1:
             params["company"] = company
 
         response = requests.get(url=url, params=params)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+
+        return None
+

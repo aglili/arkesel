@@ -79,7 +79,7 @@ class SMSV2:
         response = requests.post(url=url,data=data,headers=self.headers)
 
         if not response.ok:
-            raise requests.exceptions.RequestException(f"Failed To Schedule SMS: {response.text}")
+            raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
         return None
     
@@ -94,7 +94,7 @@ class SMSV2:
         url = "https://sms.arkesel.com/api/v2/clients/balance-details"
         response = requests.get(url=url,headers=self.headers)
         if not response.ok:
-            raise requests.exceptions.RequestException(f"Failed To Schedule SMS: {response.text}")
+            raise requests.exceptions.RequestException(f"Failed : {response.text}")
 
         return None
     
@@ -111,7 +111,7 @@ class SMSV2:
         url = f"https://sms.arkesel.com/api/v2/sms{sms_id}"
         response = requests.get(url=url,headers=self.headers)
         if not response.ok:
-            raise requests.exceptions.RequestException(f"Failed To Schedule SMS: {response.text}")
+            raise requests.exceptions.RequestException(f"Failed : {response.text}")
 
         return None
 

@@ -1,2 +1,4 @@
 .env
 pydoc-markdown.yaml
+dist
+arkesel.egg-info
