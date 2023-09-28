@@ -44,7 +44,9 @@ class SMSV2:
         "recipients": recipients 
         }
         response = requests.post(url=url,data=data,headers=self.headers)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed To Send SMS: {response.text}")
+        return None
     
 
 
@@ -76,7 +78,10 @@ class SMSV2:
 
         response = requests.post(url=url,data=data,headers=self.headers)
 
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed To Schedule SMS: {response.text}")
+
+        return None
     
 
     def check_balance(self):
@@ -88,7 +93,10 @@ class SMSV2:
         """
         url = "https://sms.arkesel.com/api/v2/clients/balance-details"
         response = requests.get(url=url,headers=self.headers)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed To Schedule SMS: {response.text}")
+
+        return None
     
     def sms_details(self,sms_id:str):
         """
@@ -102,6 +110,10 @@ class SMSV2:
         """
         url = f"https://sms.arkesel.com/api/v2/sms{sms_id}"
         response = requests.get(url=url,headers=self.headers)
-        return response.json()
+        if not response.ok:
+            raise requests.exceptions.RequestException(f"Failed To Schedule SMS: {response.text}")
+
+        return None
+
     
 
