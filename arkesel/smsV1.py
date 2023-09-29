@@ -40,7 +40,7 @@ class SMSV1:
             "sms": message
         }
         response = requests.get(url=url, params=params)
-        if not response.ok:
+        if response["message"] != "Successfully Sent":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
         return None
@@ -62,7 +62,7 @@ class SMSV1:
         url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={self.api_key}&from={sender}&sms={message}&schedule={time}"
 
         response = requests.get(url=url)
-        if not response.ok:
+        if response["message"] != "Successfully Sent":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
         return None
