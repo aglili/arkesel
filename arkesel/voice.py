@@ -37,7 +37,7 @@ class VOICE:
         }
         if voice_id:
             data["voice_id"] = voice_id
-        response = requests.post(url=url, headers=self.headers, data=data)
+        response = requests.post(url=url, headers=self.headers, data=data).json()
         if response["status"] != "success":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
         return None

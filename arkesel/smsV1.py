@@ -39,7 +39,7 @@ class SMSV1:
             "from": sender,
             "sms": message
         }
-        response = requests.get(url=url, params=params)
+        response = requests.get(url=url, params=params).json()
         if response["message"] != "Successfully Sent":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
@@ -61,7 +61,7 @@ class SMSV1:
         """
         url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={self.api_key}&from={sender}&sms={message}&schedule={time}"
 
-        response = requests.get(url=url)
+        response = requests.get(url=url).json()
         if response["message"] != "Successfully Sent":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
@@ -79,7 +79,7 @@ class SMSV1:
             "api_key": self.api_key,
             "response": "json"
         }
-        response = requests.get(url=url, params=params)
+        response = requests.get(url=url, params=params).json()
         if not response.ok:
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
@@ -119,7 +119,7 @@ class SMSV1:
         if company:
             params["company"] = company
 
-        response = requests.get(url=url, params=params)
+        response = requests.get(url=url, params=params).json()
         if not response.ok:
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 

@@ -4,7 +4,7 @@ from setuptools import setup,find_packages
 
 setup(
     name="arkesel",
-    version="0.1.5",
+    version="0.1.6",
     packages=find_packages(),
     install_requires=[
         'certifi==2023.7.22',

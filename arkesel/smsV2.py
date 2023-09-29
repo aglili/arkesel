@@ -92,7 +92,7 @@ class SMSV2:
            requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = "https://sms.arkesel.com/api/v2/clients/balance-details"
-        response = requests.get(url=url,headers=self.headers)
+        response = requests.get(url=url,headers=self.headers).json()
         if response["status"] != "success":
             raise requests.exceptions.RequestException(f"Failed : {response.text}")
 
@@ -109,7 +109,7 @@ class SMSV2:
             requests.exceptions.RequestException: If there is an error during the API request.
         """
         url = f"https://sms.arkesel.com/api/v2/sms{sms_id}"
-        response = requests.get(url=url,headers=self.headers)
+        response = requests.get(url=url,headers=self.headers).json()
         if response["status"] != "success":
             raise requests.exceptions.RequestException(f"Failed : {response.text}")
 
@@ -137,7 +137,7 @@ class SMSV2:
             "message": message
         }
 
-        response = requests.post(url=url,data=data,headers=self.headers)
+        response = requests.post(url=url,data=data,headers=self.headers).json()
 
         if not response["status"] != "success":
             raise requests.exceptions.RequestException(f"Failed : {response.text}")
