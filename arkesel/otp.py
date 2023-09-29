@@ -97,4 +97,4 @@ class OTP:
         if not response["message"] == "Successful":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
         
-        return response.json()
+        return None
