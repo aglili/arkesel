@@ -42,33 +42,10 @@ from arkesel.smsV2 import SMSV2
 
 sms = SMSV2(api_key="ARKESEL-API-KEY")
 
-response = sms.send_sms(sender="Trial",message="Trial Message",recipient=["02xxxxxxy1","0232xxxxxx","050xxxxxxx"])
+sms.send_sms(sender="Trial",message="Trial Message",recipient=["02xxxxxxy1","0232xxxxxx","050xxxxxxx"])
 
-print(response) ## json is returned 
 ```
 
-##### Output
-```json
-  {
-  "status": "success",
-  "data": [
-    {
-      "recipient": "02xxxxxxy1",
-      "id": "9b752841-7ee7-4d40-b4fe-768bfb1da4f0"
-    },
-    {
-      "recipient": "0232xxxxxx",
-      "id": "7ea01acd-485c-4df3-b646-e9e24430e145"
-    },
-    {
-      "invalid numbers": [
-        "050xxxxxxx"
-      ]
-    }
-  ]
-
-}
-```
 
 
 ##### Example 2-OTP Request
@@ -77,21 +54,10 @@ print(response) ## json is returned
 from arkesel.otp import OTP
 
 otp = OTP(api_key="ARKESEL-API-KEY")
-
-response = otp.sms_otp(expiry_minutes=6,recipient="027xxxxxxx",sender_id="Trial")
-
-print(response) ## json is returned is returned
+otp.sms_otp(expiry_minutes=6,recipient="027xxxxxxx",sender_id="Trial")
 
 ```
 
-##### Output
-```json
-{
-  "code": "1000",
-  "ussd_code": "*928*01#",
-  "message": "Successful, OTP is being processed for delivery"
-}
-```
 
 Check full docs for more help[]
 

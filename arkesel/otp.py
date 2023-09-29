@@ -42,7 +42,7 @@ class OTP:
             "type": "numeric"
         }
         response = requests.post(url=url, headers=self.headers, data=data)
-        if not response.ok:
+        if not response["code"] == "1000":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
         return None
@@ -71,7 +71,7 @@ class OTP:
             "type": "numeric"
         }
         response = requests.post(url=url, headers=self.headers, data=data)
-        if not response.ok:
+        if not response["code"] == "1000":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
 
         return None
@@ -94,7 +94,7 @@ class OTP:
             "number": number
         }
         response = requests.post(url=url, data=data, headers=self.headers)
-        if not response.ok:
+        if not response["message"] == "Successful":
             raise requests.exceptions.RequestException(f"Failed: {response.text}")
         
-        return response.json()
+        return None
