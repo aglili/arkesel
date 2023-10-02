@@ -20,7 +20,7 @@ class SMSV1:
             raise MissingAPIKey("Your API Key is missing")
         self.api_key = api_key
 
-    def send_sms(self, sender: str, message: str, recipient: str):
+    def send_sms(self, sender: str, message: str, recipient: str)->dict:
         """
         Sends an SMS message to the specified recipient.
 
@@ -29,8 +29,8 @@ class SMSV1:
             message (str): The message content.
             recipient (str): The recipient's phone number.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/sms/api?action=send-sms"
         params = {
@@ -39,14 +39,11 @@ class SMSV1:
             "from": sender,
             "sms": message
         }
-        response = requests.get(url=url, params=params)
-        if response["message"] != "Successfully Sent":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-
-        return None
+        response = requests.get(url=url, params=params).json()
+        return response
 
 
-    def schedule_sms(self, recipient: str, sender: str, message: str, time: str):
+    def schedule_sms(self, recipient: str, sender: str, message: str, time: str)->dict:
         """
         Schedule an SMS message to be sent at a specific time.
 
@@ -56,18 +53,15 @@ class SMSV1:
             message (str): The message content.
             time (str): The time to schedule the SMS (format: "YYYY-MM-DD HH:MM:SS AM/PM").
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = f"https://sms.arkesel.com/sms/api?action=send-sms&api_key={self.api_key}&from={sender}&sms={message}&schedule={time}"
 
-        response = requests.get(url=url)
-        if response["message"] != "Successfully Sent":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+        response = requests.get(url=url).json()
+        return response
 
-        return None
-
-    def check_balance(self):
+    def check_balance(self)->dict:
         """
         Retrieves the account balance.
 
@@ -79,15 +73,12 @@ class SMSV1:
             "api_key": self.api_key,
             "response": "json"
         }
-        response = requests.get(url=url, params=params)
-        if not response.ok:
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-
-        return None
+        response = requests.get(url=url, params=params).json()
+        return response
 
 
     def save_contact(self, phonebook_name: str, phone_number: str, first_name: Optional[str] = None,
-                     last_name: Optional[str] = None, email: Optional[str] = None, company: Optional[str] = None):
+                     last_name: Optional[str] = None, email: Optional[str] = None, company: Optional[str] = None)->dict:
         """
         Saves a contact to the specified phone book.
 
@@ -99,8 +90,8 @@ class SMSV1:
             email (str, optional): The email address of the contact. Defaults to None.
             company (str, optional): The company name of the contact. Defaults to None.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/contacts/api"
         params = {
@@ -119,9 +110,5 @@ class SMSV1:
         if company:
             params["company"] = company
 
-        response = requests.get(url=url, params=params)
-        if not response.ok:
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-
-        return None
-
+        response = requests.get(url=url, params=params).json()
+        return response

@@ -4,7 +4,7 @@ from setuptools import setup,find_packages
 
 setup(
     name="arkesel",
-    version="0.1.5",
+    version="0.1.7",
     packages=find_packages(),
     install_requires=[
         'certifi==2023.7.22',
@@ -40,6 +40,6 @@ setup(
     author="Aglili Selorm Cecil",
     author_email="cecilselorm34@gmail.com",
     description= "Un-Official API-Wrapper for the Arkesel API",
-    url="https://github.com/aglili/arkesel-py",
+    url="https://github.com/aglili/arkesel",
     license="MIT"
 )
