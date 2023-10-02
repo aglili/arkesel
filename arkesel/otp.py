@@ -45,7 +45,7 @@ class OTP:
         return response
 
 
-    def voice_otp(self, expiry_minutes: int, recipient: str, sender_id: str):
+    def voice_otp(self, expiry_minutes: int, recipient: str, sender_id: str)->dict:
         """
         Generates an OTP and sends it via voice call.
 
@@ -54,8 +54,8 @@ class OTP:
             recipient (str): The recipient's phone number.
             sender_id (str): The sender ID for the voice call.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/otp/generate"
         data = {
@@ -79,8 +79,8 @@ class OTP:
             code (str): The OTP code to verify.
             number (str): The phone number associated with the OTP.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/otp/verify"
         data = {
