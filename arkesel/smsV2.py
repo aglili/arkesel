@@ -25,7 +25,7 @@ class SMSV2:
 
 
 
-    def send_sms(self,sender:str,message:str,recipients:list):
+    def send_sms(self,sender:str,message:str,recipients:list)->dict:
         """
         Sends an SMS message to the specified recipients.
 
@@ -34,8 +34,8 @@ class SMSV2:
             message (str): The message content.
             recipients (List[str]): List of recipient phone numbers.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/v2/sms/send"
         data = {
@@ -44,14 +44,11 @@ class SMSV2:
         "recipients": recipients 
         }
         response = requests.post(url=url,data=data,headers=self.headers)
-        if response["statsu"] != "success":
-            raise requests.exceptions.RequestException(f"Failed To Send SMS: {response.text}")
-        return None
-    
+        return response
 
 
 
-    def schedule_sms(self,sender:str,recipients:list,message:str,schedule_date:str):
+    def schedule_sms(self,sender:str,recipients:list,message:str,schedule_date:str)->dict:
 
         """
         Schedule an SMS message to be sent at a specific date and time.
@@ -62,8 +59,8 @@ class SMSV2:
             message (str): The message content.
             schedule_date (str): The date and time to schedule the SMS (format: "YYYY-MM-DD HH:MM:SS").
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/v2/sms/send"
 
@@ -78,45 +75,36 @@ class SMSV2:
 
         response = requests.post(url=url,data=data,headers=self.headers)
 
-        if response["status"] != "success":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-
-        return None
+        return response
     
 
-    def check_balance(self):
+    def check_balance(self)->dict:
         """
         Retrieves the account balance and other related details.
 
-        Raises:
-           requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/v2/clients/balance-details"
         response = requests.get(url=url,headers=self.headers).json()
-        if response["status"] != "success":
-            raise requests.exceptions.RequestException(f"Failed : {response.text}")
-
-        return None
+        return response
     
-    def sms_details(self,sms_id:str):
+    def sms_details(self,sms_id:str)->dict:
         """
         Retrieves details of a specific SMS using its ID.
 
         Args:
             sms_id (str): The ID of the SMS.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = f"https://sms.arkesel.com/api/v2/sms{sms_id}"
         response = requests.get(url=url,headers=self.headers).json()
-        if response["status"] != "success":
-            raise requests.exceptions.RequestException(f"Failed : {response.text}")
-
-        return None
+        return response
     
 
-    def group_message(self,send_id:str,message:str,group_name:str):
+    def group_message(self,send_id:str,message:str,group_name:str)->dict:
         """
         Sends a message to a created group.
 
@@ -125,8 +113,8 @@ class SMSV2:
             message (str): Message to be sent to that particular group
             group_name (str): The Name of the group to which the message is being sent
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
 
         url = "https://sms.arkesel.com/api/v2/sms/send/contact-group"
@@ -139,9 +127,6 @@ class SMSV2:
 
         response = requests.post(url=url,data=data,headers=self.headers).json()
 
-        if not response["status"] != "success":
-            raise requests.exceptions.RequestException(f"Failed : {response.text}")
-
-        return None
+        return response
 
 
