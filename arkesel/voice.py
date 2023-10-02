@@ -18,7 +18,7 @@ class VOICE:
         """
         self.headers = {"api-key": api_key}
 
-    def send_voice_message(self, recipients: List[str], voice_file: str,voice_id:Optional[str]=None):
+    def send_voice_message(self, recipients: List[str], voice_file: str,voice_id:Optional[str]=None)->dict:
         """
         Sends a voice message to the specified recipients.
 
@@ -27,8 +27,8 @@ class VOICE:
             voice_file (str): Path or URL to the voice file.
             voice_id (str): A Voice ID or DID number that can be used for the Voice SMS.Voice ID is optional and can be registered through Arkesel Support channel.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+       Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/v2/sms/voice/send"
         data = {
@@ -38,7 +38,4 @@ class VOICE:
         if voice_id:
             data["voice_id"] = voice_id
         response = requests.post(url=url, headers=self.headers, data=data).json()
-        if response["status"] != "success":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-        return None
-
+        return response
