@@ -19,7 +19,7 @@ class OTP:
         self.api_key = api_key
         self.headers = {"api-key": api_key}
 
-    def sms_otp(self, expiry_minutes: int, recipient: str, sender_id: str):
+    def sms_otp(self, expiry_minutes: int, recipient: str, sender_id: str)->dict:
         """
         Generates an OTP and sends it via SMS.
 
@@ -28,8 +28,8 @@ class OTP:
             recipient (str): The recipient's phone number.
             sender_id (str): The sender ID to display in the SMS.
 
-        Raises:
-            requests.exceptions.RequestException: If there is an error during the API request.
+        Returns:
+            response(dict): Returns Json Response
         """
         url = "https://sms.arkesel.com/api/otp/generate"
         data = {
@@ -42,10 +42,7 @@ class OTP:
             "type": "numeric"
         }
         response = requests.post(url=url, headers=self.headers, data=data).json()
-        if not response["code"] == "1000":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-
-        return None
+        return response
 
 
     def voice_otp(self, expiry_minutes: int, recipient: str, sender_id: str):
@@ -71,12 +68,10 @@ class OTP:
             "type": "numeric"
         }
         response = requests.post(url=url, headers=self.headers, data=data).json()
-        if not response["code"] == "1000":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
+        return response
 
-        return None
 
-    def verify_otp(self, code: str, number: str):
+    def verify_otp(self, code: str, number: str)->dict:
         """
         Verifies an OTP with the provided code and phone number.
 
@@ -94,7 +89,4 @@ class OTP:
             "number": number
         }
         response = requests.post(url=url, data=data, headers=self.headers).json()
-        if not response["message"] == "Successful":
-            raise requests.exceptions.RequestException(f"Failed: {response.text}")
-        
-        return None
+        return response
