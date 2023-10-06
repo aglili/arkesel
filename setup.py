@@ -27,7 +27,7 @@ setup(
         'rfc3986==2.0.0',
         'rich==13.5.3',
         'twine==4.0.2',
-        'urllib3==2.0.4',
+        'urllib3==2.0.6',
         'zipp==3.16.2'
     ],
     classifiers=[
