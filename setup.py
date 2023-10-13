@@ -14,7 +14,6 @@ setup(
         'importlib-metadata==6.8.0',
         'jaraco.classes==3.3.0',
         'keyring==24.2.0',
-        'markdown-it-py==3.0.0',
         'mdurl==0.1.2',
         'more-itertools==10.1.0',
         'nh3==0.2.14',
@@ -42,8 +41,6 @@ setup(
     description= """
     Un-Official API-Wrapper for the Arkesel API
     For Sending Bulk SMS and OTP
-
-
     """,
     url="https://github.com/aglili/arkesel",
     license="MIT"
