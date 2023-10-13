@@ -39,7 +39,12 @@ setup(
     # meta data
     author="Aglili Selorm Cecil",
     author_email="cecilselorm34@gmail.com",
-    description= "Un-Official API-Wrapper for the Arkesel API",
+    description= """
+    Un-Official API-Wrapper for the Arkesel API
+    For Sending Bulk SMS and OTP
+
+
+    """,
     url="https://github.com/aglili/arkesel",
     license="MIT"
 )
